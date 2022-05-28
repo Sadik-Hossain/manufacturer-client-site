@@ -10,7 +10,6 @@ const InventoryDetails = () => {
   const { itemId } = useParams();
   const [user, error] = useAuthState(auth);
   const [detail, setDetail] = useState({});
-  const [d, setD] = useState(0);
   const [loading, setLoading] = useState(false);
   const [loading1, setLoading1] = useState(false);
   const { name, img, description, price, available, minQty } = detail;
@@ -59,32 +58,36 @@ const InventoryDetails = () => {
   //* =============== restock function ================
   const handleAdd = (e) => {
     e.preventDefault();
-    const name = e.target.name.value;
+    const username = e.target.name.value;
     const email = e.target.email.value;
-    const number = e.target.number.value;
+    const quantity = e.target.number.value;
+    const newAvailable = Number(available) - Number(quantity);
+    const data = {
+      newAvailable,
+    };
 
-    console.log(name, email, number);
+    const url = `http://localhost:5001/parts/${itemId}`;
     //* send data to the server
-    // fetch(url, {
-    //   method: "PUT",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(data),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log("success", data);
-    //     e.target.reset();
-    //     //* load updated data
-    //     setLoading(true);
-    //     fetch(url)
-    //       .then((res) => res.json())
-    //       .then((data) => {
-    //         setDetail(data);
-    //         setLoading(false);
-    //       });
-    //   });
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("success", data);
+        e.target.reset();
+        // //* load updated data
+        setLoading(true);
+        fetch(url)
+          .then((res) => res.json())
+          .then((data) => {
+            setDetail(data);
+            setLoading(false);
+          });
+      });
   };
   return (
     <div>
@@ -100,29 +103,12 @@ const InventoryDetails = () => {
           <p className="detail-text">
             available : {loading ? "updating..." : available}
           </p>
-          {/* <p className="detail-text">
+          <p className="detail-text">
             description : <small>{description}</small>
-          </p> */}
+          </p>
         </div>
       </div>
-      {/* 
-      //* ============= deliver service =======================
-      */}
-      {/* <form onSubmit={handleDeliver}>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <input type="number" name="number" pattern="^[0-9]" min="1" />
-          <input
-            type="submit"
-            value="order"
-            style={{
-              display: "block",
-              //   background: "#000",
-              //   color: "white",
-              padding: " 1rem",
-            }}
-          ></input>
-        </div>
-      </form> */}
+
       {/* 
       //* ============ restock form ==================
       */}

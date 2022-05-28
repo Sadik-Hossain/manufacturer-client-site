@@ -10,6 +10,7 @@ import Header from "./Pages/Shared/Header/Header";
 import "react-toastify/dist/ReactToastify.css";
 import PartsDetails from "./Pages/Parts/PartsDetails";
 import RequireAuth from "./Pages/Login/RequireAuth";
+import DashBoard from "./Pages/DashBoard/DashBoard";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/home" element={<Home />}></Route>
         <Route path="/blogs" element={<Blogs />}></Route>
+        <Route path="/dashboard" element={<DashBoard />}></Route>
         <Route path="/parts/:itemId" element={<PartsDetails />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>

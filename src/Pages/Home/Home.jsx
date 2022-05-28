@@ -50,8 +50,12 @@ const Home = () => {
       </div>
       {/* //* -------- Buisness summary --------
        */}
-      <h1 style={{ textAlign: "center" }}>Our Buisness Summary</h1>
-      <BuisnessSummary />
+      <div style={{ margin: "3rem 0" }}>
+        <h1 style={{ textAlign: "center", marginBottom: "5rem " }}>
+          Our Buisness Summary
+        </h1>
+        <BuisnessSummary />
+      </div>
       {/* //* --------- product review ---------
        */}
 
@@ -61,12 +65,15 @@ const Home = () => {
       <h1
         style={{
           textAlign: "center",
-          margin: "5rem 0",
+          margin: "3rem 0",
         }}
       >
         See What Our Client Say About Us
       </h1>
-      <div className="featured-section inventory-section">
+      <div
+        style={{ padding: "0 3rem" }}
+        className="featured-section inventory-section"
+      >
         {testimonial.map((t) => (
           <Testimonial key={t._id} t={t}></Testimonial>
         ))}
