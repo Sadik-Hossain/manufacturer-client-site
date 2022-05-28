@@ -11,7 +11,15 @@ import "react-toastify/dist/ReactToastify.css";
 import PartsDetails from "./Pages/Parts/PartsDetails";
 import RequireAuth from "./Pages/Login/RequireAuth";
 import DashBoard from "./Pages/DashBoard/DashBoard";
+import Myreview from "./Pages/DashBoard/Myreview";
 
+import "./App.css";
+import MyOrder from "./Pages/DashBoard/MyOrder";
+import MyProfile from "./Pages/DashBoard/MyProfile";
+import AllOrder from "./Pages/DashBoard/AllOrder";
+import MakeAdmin from "./Pages/DashBoard/MakeAdmin";
+import AddProduct from "./Pages/DashBoard/AddProduct";
+import ManageProduct from "./Pages/DashBoard/ManageProduct";
 function App() {
   return (
     <div className="App">
@@ -20,7 +28,24 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/home" element={<Home />}></Route>
         <Route path="/blogs" element={<Blogs />}></Route>
-        <Route path="/dashboard" element={<DashBoard />}></Route>
+        <Route
+          path="/dashboard"
+          element={
+            <RequireAuth>
+              <DashBoard></DashBoard>
+            </RequireAuth>
+          }
+        >
+          {/* nested route */}
+          <Route index element={<MyProfile />}></Route>
+          <Route path="review" element={<Myreview />}></Route>
+          <Route path="order" element={<MyOrder />}></Route>
+          <Route path="makeadmin" element={<MakeAdmin />}></Route>
+          <Route path="addproduct" element={<AddProduct />}></Route>
+          <Route path="manageproduct" element={<ManageProduct />}></Route>
+
+          <Route path="allorder" element={<AllOrder />}></Route>
+        </Route>
         <Route path="/parts/:itemId" element={<PartsDetails />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>

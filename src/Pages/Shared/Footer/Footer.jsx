@@ -4,26 +4,28 @@ const Footer = () => {
   const urlPlayStore = `https://i.ibb.co/yyQ4t6c/google-play.png`;
   const urlAppStore = `https://i.ibb.co/tmQ6hnh/app-store.png`;
   return (
-    <div className="footer-container">
-      <h1 style={{ color: "#fefedf" }}>Computer Zone</h1>
-      <p>
-        <small>
-          copyright
-          <span dangerouslySetInnerHTML={{ __html: "&copy;" }}></span>
-          {new Date().getFullYear()}
-        </small>
-        <br />
-        <small>All rights reserved</small>
-      </p>
+    <footer class="footer p-10 bg-neutral text-neutral-content">
       <div>
-        <a href="#">
-          <img style={{ marginRight: "1rem" }} src={urlPlayStore} alt="" />
-        </a>
-        <a href="#">
-          <img src={urlAppStore} alt="" />
-        </a>
+        <span class="footer-title">Services</span>
+        <a class="link link-hover">Branding</a>
+        <a class="link link-hover">Design</a>
+        <a class="link link-hover">Marketing</a>
+        <a class="link link-hover">Advertisement</a>
       </div>
-    </div>
+      <div>
+        <span class="footer-title">Company</span>
+        <a class="link link-hover">About us</a>
+        <a class="link link-hover">Contact</a>
+        <a class="link link-hover">Jobs</a>
+        <a class="link link-hover">Press kit</a>
+      </div>
+      <div>
+        <span class="footer-title">Legal</span>
+        <a class="link link-hover">Terms of use</a>
+        <a class="link link-hover">Privacy policy</a>
+        <a class="link link-hover">Cookie policy</a>
+      </div>
+    </footer>
   );
 };
 
