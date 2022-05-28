@@ -1,0 +1,25 @@
+.detail-text {
+  font-weight: bold;
+}
+.detail-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin: 2rem;
+}
+.span-text {
+  font-weight: bold;
+}
+p {
+  font-size: large;
+}
+@media only screen and (max-width: 425px) {
+  .detail-card {
+    display: flex;
+    flex-direction: column;
+  }
+  .detail-card img {
+    width: 100%;
+    height: auto;
+  }
+}

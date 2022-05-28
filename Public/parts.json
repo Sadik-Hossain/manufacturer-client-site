@@ -2,40 +2,40 @@
     { 
         "name": "ram-ddr4",
         "price": "3000",
-        "minimum-quantity":"50",
-        "available-quantity":"786",
+        "minQty":"50",
+        "available":"786",
         "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa.",
         "img": "https://i.ibb.co/dGDkr4v/1.jpg"
     },
     { 
         "name": "processor-i5",
         "price": "10000",
-        "minimum-quantity":"50",
-        "available-quantity":"860",
+        "minQty":"50",
+        "available":"860",
         "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa.",
         "img": "https://i.ibb.co/tY8dmnP/2.jpg"
     },
     { 
         "name": "cpu heatsink",
         "price": "1500",
-        "minimum-quantity":"50",
-        "available-quantity":"860",
+        "minQty":"50",
+        "available":"860",
         "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa.",
         "img": "https://i.ibb.co/Yh04YVw/3.jpg"
     },
     { 
         "name": "cpu Fan",
         "price": "180",
-        "minimum-quantity":"50",
-        "available-quantity":"860",
+        "minQty":"50",
+        "available":"860",
         "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa.",
         "img": "https://i.ibb.co/ZX2Cbkn/4.jpg"
     },
     { 
         "name": "SATA-Cable",
         "price": "100",
-        "minimum-quantity":"50",
-        "available-quantity":"860",
+        "minQty":"50",
+        "available":"860",
         "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa.",
         "img": "https://i.ibb.co/FgQ3jXp/5.jpg"
     },
@@ -43,8 +43,8 @@
         
         "name": "Power Supply",
         "price": "300",
-        "minimum-quantity":"50",
-        "available-quantity":"860",
+        "minQty":"50",
+        "available":"860",
         "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa",
         "img": "https://i.ibb.co/zJy5ZDd/6.jpg"
     }

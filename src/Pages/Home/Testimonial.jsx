@@ -4,11 +4,13 @@ const Testimonial = ({ t }) => {
   return (
     <div
       style={{
-        border: "2px solid #2F4858 ",
+        border: "2px solid  ",
         padding: "1.5rem",
-        borderRadius: "1.5rem",
+        borderRadius: ".5rem",
         background: "#FFC7A0",
         color: "black",
+        boxShadow: "  .5rem .8rem  rgba(0, 0, 0, 1)",
+        margin: "10rem 0",
       }}
     >
       <img

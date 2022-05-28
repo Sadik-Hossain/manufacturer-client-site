@@ -64,7 +64,7 @@ const SignUp = () => {
             />
             <label>
               {errors.name?.type === "required" && (
-                <span>{errors.name.message}</span>
+                <span style={{ color: "red" }}>{errors.name.message}</span>
               )}
             </label>
           </div>
@@ -92,10 +92,10 @@ const SignUp = () => {
             />
             <label>
               {errors.email?.type === "required" && (
-                <span>{errors.email.message}</span>
+                <span style={{ color: "red" }}>{errors.email.message}</span>
               )}
               {errors.email?.type === "pattern" && (
-                <span>{errors.email.message}</span>
+                <span style={{ color: "red" }}>{errors.email.message}</span>
               )}
             </label>
           </div>
@@ -123,10 +123,10 @@ const SignUp = () => {
             />
             <label>
               {errors.password?.type === "required" && (
-                <span>{errors.password.message}</span>
+                <span style={{ color: "red" }}>{errors.password.message}</span>
               )}
               {errors.password?.type === "minLength" && (
-                <span>{errors.password.message}</span>
+                <span style={{ color: "red" }}>{errors.password.message}</span>
               )}
             </label>
           </div>
