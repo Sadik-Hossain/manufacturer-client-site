@@ -2,5 +2,13 @@
   background: #fff;
   padding: 1rem;
   border-radius: 1rem;
-  margin-top: 2rem;
+  margin: 5rem auto;
+  border: 2px solid #000;
+  box-shadow: 1rem 1rem 0px rgba(0, 0, 0, 1);
+}
+.ans-card h1 {
+  font-size: 2rem;
+}
+.ans-card p {
+  font-size: 1.5rem;
 }
