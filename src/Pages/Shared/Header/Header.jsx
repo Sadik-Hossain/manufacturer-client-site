@@ -17,7 +17,7 @@ const Header = () => {
         display: "flex",
         justifyContent: "space-around",
         alignItems: "center",
-        background: "#000",
+        background: "#2F4858",
         padding: "1rem 0",
       }}
     >

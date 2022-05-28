@@ -1,0 +1,27 @@
+.inventory-section {
+  width: 80%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.primary-btn {
+  display: block;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: #000;
+  color: white;
+}
+.danger-btn {
+  display: block;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: #df4759;
+  color: white;
+}
+@media only screen and (max-width: 425px) {
+  .inventory-section {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}

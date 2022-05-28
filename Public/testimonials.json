@@ -1,0 +1,23 @@
+[
+    {
+      "_id": "6288e36892b24580e9bc8102",
+      "img": "https://randomuser.me/api/portraits/women/58.jpg",
+      "name": "Rich Gamble",
+      "company": "EXOSIS inc.",
+      "about": "Very affordable solution provider for large entitties. Very much cost effiecient, saves us a lot of time from decoration to rearrangment. strongly recommended "
+    },
+    {
+      "_id": "6288e3680dc1bd1e91e65f9c",
+      "img": "https://randomuser.me/api/portraits/men/28.jpg",
+      "name": "Wendi Russell",
+      "company": "MICRONAUT.co",
+      "about": "Very affordable solution provider for large entitties. Very much cost effiecient, saves us a lot of time from decoration to rearrangment. 100% satisfied"
+    },
+    {
+      "_id": "6288e36863774cabaeadd649",
+      "img": "https://randomuser.me/api/portraits/men/49.jpg",
+      "name": "Walls Cochran",
+      "company": "UXMOX ltd.",
+      "about": "Very affordable solution provider for large entitties. Very much cost effiecient, saves us a lot of time from decoration to rearrangment. 100% satisfied"
+    }
+  ]

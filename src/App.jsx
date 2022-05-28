@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import "./App.css";
 import Blogs from "./Pages/Blogs/Blogs";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
@@ -8,10 +7,11 @@ import SignUp from "./Pages/Login/SignUp";
 import NotFound from "./Pages/NotFound/NotFound";
 import Footer from "./Pages/Shared/Footer/Footer";
 import Header from "./Pages/Shared/Header/Header";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
-    <div style={{ background: "#efefef" }} className="App">
+    <div className="App">
       <Header />
       <Routes>
         <Route path="/" element={<Home />}></Route>

@@ -43,7 +43,7 @@ const NotFound = () => {
             padding: "0 1rem",
             color: "white",
             border: "0",
-            background: "#000",
+            background: "#2F4858",
             cursor: "pointer",
           }}
           onClick={homeRedirect}
