@@ -5,6 +5,7 @@ import "./Home.css";
 import { toast } from "react-toastify";
 import Spinner from "../Shared/Spinner/Spinner";
 import Parts from "../Parts/Parts";
+import BuisnessSummary from "./BuisnessSummary";
 const Home = () => {
   const [items, setItems] = useState([]);
   const [testimonial, setTestimonial] = useState([]);
@@ -49,7 +50,8 @@ const Home = () => {
       </div>
       {/* //* -------- Buisness summary --------
        */}
-
+      <h1 style={{ textAlign: "center" }}>Our Buisness Summary</h1>
+      <BuisnessSummary />
       {/* //* --------- product review ---------
        */}
 
