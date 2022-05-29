@@ -50,8 +50,8 @@ const Home = () => {
       </div>
       {/* //* -------- Buisness summary --------
        */}
-      <div style={{ margin: "3rem 0" }}>
-        <h1 style={{ textAlign: "center", marginBottom: "5rem " }}>
+      <div style={{ margin: "5rem 0" }}>
+        <h1 className="text-3xl font-bold text-center ">
           Our Buisness Summary
         </h1>
         <BuisnessSummary />
@@ -62,12 +62,7 @@ const Home = () => {
       {/* //* ---------- bonus section ------------
        */}
       {/* //* testimonial */}
-      <h1
-        style={{
-          textAlign: "center",
-          margin: "3rem 0",
-        }}
-      >
+      <h1 className="text-3xl font-bold text-center ">
         See What Our Client Say About Us
       </h1>
       <div

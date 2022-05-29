@@ -1,29 +1,68 @@
 import React from "react";
 import "./BuisnessSummary.css";
 const BuisnessSummary = () => {
-  const url = `https://i.ibb.co/YtHM7WY/award-pngrepo-com.png`;
   return (
-    <div>
-      <div className="b-sum">
-        <div>
-          <img src="https://svgshare.com/i/hoU.svg" title="" />
-          <h1>16</h1>
-          <p>Specialist</p>
+    <div style={{ width: "90%", margin: "5rem auto" }}>
+      <div
+        style={{
+          borderRadius: "1rem",
+          boxShadow: " 1rem 1rem 0px rgba(0, 0, 0, 1)",
+          padding: "8rem 0",
+        }}
+        className="card-container"
+      >
+        <div class="stat">
+          <div class="stat-figure text-primary">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              class="inline-block w-8 h-8 stroke-current"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              ></path>
+            </svg>
+          </div>
+          <div class="stat-title">Total Work Done</div>
+          <div class="stat-value text-primary">126+</div>
+          <div class="stat-desc">21% more than last month</div>
         </div>
-        <div>
-          <img src="https://www.svgrepo.com/show/50222/happy.svg" title="" />
-          <h1>1256</h1>
-          <p>Happy Clients</p>
+
+        <div class="stat">
+          <div class="stat-figure text-secondary">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              class="inline-block w-8 h-8 stroke-current"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 10V3L4 14h7v7l9-11h-7z"
+              ></path>
+            </svg>
+          </div>
+          <div class="stat-title">Page Views</div>
+          <div class="stat-value text-secondary">2.6M</div>
+          <div class="stat-desc">21% more than last month</div>
         </div>
-        <div>
-          <img src="https://svgshare.com/i/hpc.svg" title="" />
-          <h1>16</h1>
-          <p>26 Meetings</p>
-        </div>
-        <div>
-          <img src="https://www.svgrepo.com/show/121237/award.svg" title="" />
-          <h1>13</h1>
-          <p>Awards</p>
+
+        <div class="stat">
+          <div class="stat-figure text-secondary">
+            <div class="avatar online">
+              <div class="w-16 rounded-full">
+                <img src="https://api.lorem.space/image/face?w=128&h=128" />
+              </div>
+            </div>
+          </div>
+          <div class="stat-value">1567+</div>
+          <div class="stat-title">Happy Clients</div>
         </div>
       </div>
     </div>

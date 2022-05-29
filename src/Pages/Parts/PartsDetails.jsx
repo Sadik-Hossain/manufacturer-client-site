@@ -128,6 +128,7 @@ const InventoryDetails = () => {
             type="number"
             name="quantity"
             pattern="^[0-9]"
+            required
             max={available}
             min={minQty}
           />
