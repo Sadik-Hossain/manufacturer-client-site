@@ -8,7 +8,7 @@ const useToken = (user) => {
       email: email,
     };
     if (email) {
-      fetch(`http://localhost:5001/user/${email}`, {
+      fetch(`https://intense-sierra-47612.herokuapp.com/user/${email}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

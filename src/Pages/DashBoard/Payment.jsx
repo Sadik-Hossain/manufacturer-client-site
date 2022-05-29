@@ -11,7 +11,7 @@ const Payment = () => {
     "pk_test_51L3jwfBGlv4kdDdlVpHYBG5ctuHCANZXiMzlyrXKirXAt4rd4a2vltdcY9qO97oF5562ltLLusrrbqszlM7sF5Ro00WSlpEBN9"
   );
   const { id } = useParams();
-  const url = `http://localhost:5001/order/${id}`;
+  const url = `https://intense-sierra-47612.herokuapp.com/order/${id}`;
   const { data: orders, isLoading } = useQuery(["booking", id], () =>
     fetch(url, {
       method: "GET",
@@ -37,7 +37,11 @@ const Payment = () => {
           <p className="font-semibold">
             Price Per Unit: $<span>{orders.pricePerUnit}</span>
           </p>
-          <p className="font-semibold">Please pay: ${orders.cost}</p>
+          {!orders.paid ? (
+            <p className="font-semibold">Please pay: ${orders.cost}</p>
+          ) : (
+            <p className="text-success font-semibold">Payment recieved</p>
+          )}
         </div>
       </div>
       <div class="card flex-shrink-0 w-50 max-w-md shadow-2xl bg-base-100">

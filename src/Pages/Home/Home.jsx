@@ -12,7 +12,7 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:5001/parts")
+    fetch("https://intense-sierra-47612.herokuapp.com/parts")
       .then((res) => res.json())
       .then((data) => {
         setItems(data);

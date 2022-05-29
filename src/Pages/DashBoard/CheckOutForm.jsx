@@ -10,10 +10,10 @@ const CheckoutForm = ({ orders }) => {
   const [transactionId, setTransactionId] = useState("");
   const [clientSecret, setClientSecret] = useState("");
 
-  const { _id, cost, email, product, username } = orders;
+  const { _id, cost, email, paid, username } = orders;
 
   useEffect(() => {
-    fetch("http://localhost:5001/create-payment-intent", {
+    fetch("https://intense-sierra-47612.herokuapp.com/create-payment-intent", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -76,7 +76,7 @@ const CheckoutForm = ({ orders }) => {
         order: _id,
         transactionId: paymentIntent.id,
       };
-      fetch(`http://localhost:5001/order/${_id}`, {
+      fetch(`https://intense-sierra-47612.herokuapp.com/order/${_id}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",
@@ -113,7 +113,7 @@ const CheckoutForm = ({ orders }) => {
         <button
           className="btn btn-success btn-sm mt-4"
           type="submit"
-          disabled={!stripe || !clientSecret || success}
+          disabled={!stripe || !clientSecret || success || paid}
         >
           Pay
         </button>

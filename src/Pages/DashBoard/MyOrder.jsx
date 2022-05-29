@@ -11,7 +11,7 @@ const MyOrder = () => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     const email = user.email;
-    const url = `http://localhost:5001/order?email=${email}`;
+    const url = `https://intense-sierra-47612.herokuapp.com/order?email=${email}`;
     setLoading(true);
     fetch(url, {
       method: "GET",

@@ -14,7 +14,7 @@ const InventoryDetails = () => {
 
   const [loading1, setLoading1] = useState(false);
   const { _id, name, img, description, price, available, minQty } = detail;
-  const url = `http://localhost:5001/parts/${itemId}`;
+  const url = `https://intense-sierra-47612.herokuapp.com/parts/${itemId}`;
 
   useEffect(() => {
     setLoading1(true);
@@ -57,7 +57,7 @@ const InventoryDetails = () => {
       newAvailable,
     };
 
-    const url = `http://localhost:5001/parts/${itemId}`;
+    const url = `https://intense-sierra-47612.herokuapp.com/parts/${itemId}`;
     //* send data to the server
 
     if (quantity >= 1) {
@@ -82,7 +82,7 @@ const InventoryDetails = () => {
             });
         });
       toast.success("Order success");
-      fetch(`http://localhost:5001/order`, {
+      fetch(`https://intense-sierra-47612.herokuapp.com/order`, {
         method: "POST",
         headers: {
           "content-type": "application/json",

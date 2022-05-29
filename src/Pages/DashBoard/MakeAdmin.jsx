@@ -3,7 +3,7 @@ import Spinner from "../Shared/Spinner/Spinner";
 import UserRow from "./UserRow";
 import { useQuery } from "react-query";
 const MakeAdmin = () => {
-  const url = `http://localhost:5001/user`;
+  const url = `https://intense-sierra-47612.herokuapp.com/user`;
 
   const {
     data: users,
