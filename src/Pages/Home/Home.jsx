@@ -78,15 +78,17 @@ const Home = () => {
         style={{
           boxShadow: " 1rem 1rem 0px rgba(0, 0, 0, 1)",
           border: "2px solid #000",
+          width: "65%",
         }}
         className=" register-form"
       >
         <form onSubmit={handleSubmit}>
-          <h1 style={{ textAlign: "center" }}>
+          <h1 className="text-3xl text-center font-semibold mb-3">
             Subscribe to our daily newletter!!
           </h1>
           <input type="email" placeholder="your email" />
           <input
+            className="font-semibold"
             style={{
               background: "#476c75",
 

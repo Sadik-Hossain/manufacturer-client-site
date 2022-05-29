@@ -8,6 +8,7 @@ import auth from "../../firebase.init";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Spinner from "../Shared/Spinner/Spinner";
 import { useForm } from "react-hook-form";
+import useToken from "../../hooks/useToken";
 
 const Login = () => {
   const {
@@ -20,7 +21,7 @@ const Login = () => {
 
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
-
+  const [token] = useToken(user || gUser);
   const navigate = useNavigate();
   const location = useLocation();
   let from = location.state?.from?.pathname || "/";
@@ -29,10 +30,10 @@ const Login = () => {
   //* user pawa gele jekhan theke asce sekhane pathay dewa
   useEffect(() => {
     // console.log(user || gUser);
-    if (user || gUser) {
+    if (token) {
       navigate(from, { replace: true });
     }
-  }, [user, gUser, from, navigate]);
+  }, [token, from, navigate]);
 
   let signInError;
 
@@ -43,21 +44,23 @@ const Login = () => {
       </p>
     );
   }
-  // * passing true for showing loading always [styling purpose]
-  // if (true || loading || gLoading) {
-  //   return <Loading />;
-  // }
+
   if (loading || gLoading) {
     return <Spinner />;
   }
 
   const onSubmit = (data) => {
-    console.log(data);
     signInWithEmailAndPassword(data.email, data.password);
   };
 
   return (
-    <div className="register-form">
+    <div
+      style={{
+        boxShadow: " 1rem 1rem 0px rgba(0, 0, 0, 1)",
+        border: "2px solid #000",
+      }}
+      className="register-form"
+    >
       <h2>Login</h2>
       {/* 
           //* ================= login form =================

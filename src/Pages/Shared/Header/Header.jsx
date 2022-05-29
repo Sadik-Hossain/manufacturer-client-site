@@ -9,6 +9,7 @@ const Header = () => {
   const [user, loading, error] = useAuthState(auth);
   const logout = () => {
     signOut(auth);
+    localStorage.removeItem("accessToken");
     toast("Logged Out Successfully");
   };
   return (

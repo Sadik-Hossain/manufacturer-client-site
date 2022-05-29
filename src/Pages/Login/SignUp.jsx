@@ -9,6 +9,8 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import "./Signup.css";
 import Spinner from "../Shared/Spinner/Spinner";
+import useToken from "../../hooks/useToken";
+
 const SignUp = () => {
   const {
     register,
@@ -20,7 +22,7 @@ const SignUp = () => {
     useCreateUserWithEmailAndPassword(auth);
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
   const navigate = useNavigate();
-
+  const [token] = useToken(user || gUser);
   let signInError;
   if (error || gError || updateError) {
     signInError = <p>{error?.message || gError?.message}</p>;
@@ -28,19 +30,23 @@ const SignUp = () => {
   if (loading || gLoading || updating) {
     return <Spinner />;
   }
-  if (user || gUser) {
-    console.log(user || gUser);
+  if (token) {
+    navigate("/home");
   }
   const onSubmit = async (data) => {
     // console.log(data);
     await createUserWithEmailAndPassword(data.email, data.password);
     await updateProfile({ displayName: data.name });
-    console.log("update done");
-    navigate("/home");
   };
   return (
     <div>
-      <div className="register-form">
+      <div
+        style={{
+          boxShadow: " 1rem 1rem 0px rgba(0, 0, 0, 1)",
+          border: "2px solid #000",
+        }}
+        className="register-form"
+      >
         {/* 
           //* ================= reg. form ===============
           */}

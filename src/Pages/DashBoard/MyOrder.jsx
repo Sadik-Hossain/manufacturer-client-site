@@ -12,7 +12,12 @@ const MyOrder = () => {
     const email = user.email;
     const url = `http://localhost:5001/order?email=${email}`;
     setLoading(true);
-    fetch(url)
+    fetch(url, {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

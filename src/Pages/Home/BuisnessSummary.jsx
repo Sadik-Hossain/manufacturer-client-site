@@ -8,6 +8,8 @@ const BuisnessSummary = () => {
           borderRadius: "1rem",
           boxShadow: " 1rem 1rem 0px rgba(0, 0, 0, 1)",
           padding: "8rem 0",
+          border: "2px solid #000",
+          fontWeight: "bold",
         }}
         className="card-container"
       >
