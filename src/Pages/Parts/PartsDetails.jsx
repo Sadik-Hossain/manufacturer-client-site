@@ -81,6 +81,7 @@ const InventoryDetails = () => {
               setLoading(false);
             });
         });
+      toast.success("Order success");
       fetch(`http://localhost:5001/order`, {
         method: "POST",
         headers: {

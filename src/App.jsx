@@ -21,6 +21,7 @@ import MakeAdmin from "./Pages/DashBoard/MakeAdmin";
 import AddProduct from "./Pages/DashBoard/AddProduct";
 import ManageProduct from "./Pages/DashBoard/ManageProduct";
 import RequireAdmin from "./Pages/Login/RequireAdmin";
+import Payment from "./Pages/DashBoard/Payment";
 function App() {
   return (
     <div className="App">
@@ -41,6 +42,10 @@ function App() {
           <Route index element={<MyProfile />}></Route>
           <Route path="review" element={<Myreview />}></Route>
           <Route path="order" element={<MyOrder />}></Route>
+          <Route path="payment/:id" element={<Payment />}></Route>
+          {/* 
+          //* ----------- admin routes ----------------
+          */}
           <Route
             path="makeadmin"
             element={

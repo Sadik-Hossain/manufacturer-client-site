@@ -27,12 +27,16 @@ const Dashboard = () => {
           <li>
             <Link to="/dashboard">My Profile</Link>
           </li>
-          <li>
-            <Link to="/dashboard/order">My order</Link>
-          </li>
-          <li>
-            <Link to="/dashboard/review">My review</Link>
-          </li>
+          {!admin && (
+            <>
+              <li>
+                <Link to="/dashboard/order">My order</Link>
+              </li>
+              <li>
+                <Link to="/dashboard/review">My review</Link>
+              </li>
+            </>
+          )}
           {/* 
 //* ------------------- ADMIN Routes ------------------------
 */}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 
-const CheckoutForm = ({ appointment }) => {
+const CheckoutForm = ({ orders }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [cardError, setCardError] = useState("");
@@ -10,16 +10,16 @@ const CheckoutForm = ({ appointment }) => {
   const [transactionId, setTransactionId] = useState("");
   const [clientSecret, setClientSecret] = useState("");
 
-  const { _id, price, patient, patientName } = appointment;
+  const { _id, cost, email, product, username } = orders;
 
   useEffect(() => {
-    fetch("https://secret-dusk-46242.herokuapp.com/create-payment-intent", {
+    fetch("http://localhost:5001/create-payment-intent", {
       method: "POST",
       headers: {
         "content-type": "application/json",
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
-      body: JSON.stringify({ price }),
+      body: JSON.stringify({ cost }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -27,7 +27,7 @@ const CheckoutForm = ({ appointment }) => {
           setClientSecret(data.clientSecret);
         }
       });
-  }, [price]);
+  }, [cost]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -56,8 +56,8 @@ const CheckoutForm = ({ appointment }) => {
         payment_method: {
           card: card,
           billing_details: {
-            name: patientName,
-            email: patient,
+            name: username,
+            email: email,
           },
         },
       });
@@ -73,11 +73,11 @@ const CheckoutForm = ({ appointment }) => {
 
       //store payment on database
       const payment = {
-        appointment: _id,
+        order: _id,
         transactionId: paymentIntent.id,
       };
-      fetch(`https://secret-dusk-46242.herokuapp.com/booking/${_id}`, {
-        method: "PATCH",
+      fetch(`http://localhost:5001/order/${_id}`, {
+        method: "PUT",
         headers: {
           "content-type": "application/json",
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
