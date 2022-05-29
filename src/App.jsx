@@ -20,6 +20,7 @@ import AllOrder from "./Pages/DashBoard/AllOrder";
 import MakeAdmin from "./Pages/DashBoard/MakeAdmin";
 import AddProduct from "./Pages/DashBoard/AddProduct";
 import ManageProduct from "./Pages/DashBoard/ManageProduct";
+import RequireAdmin from "./Pages/Login/RequireAdmin";
 function App() {
   return (
     <div className="App">
@@ -40,11 +41,39 @@ function App() {
           <Route index element={<MyProfile />}></Route>
           <Route path="review" element={<Myreview />}></Route>
           <Route path="order" element={<MyOrder />}></Route>
-          <Route path="makeadmin" element={<MakeAdmin />}></Route>
-          <Route path="addproduct" element={<AddProduct />}></Route>
-          <Route path="manageproduct" element={<ManageProduct />}></Route>
+          <Route
+            path="makeadmin"
+            element={
+              <RequireAdmin>
+                <MakeAdmin />
+              </RequireAdmin>
+            }
+          ></Route>
+          <Route
+            path="addproduct"
+            element={
+              <RequireAdmin>
+                <AddProduct />
+              </RequireAdmin>
+            }
+          ></Route>
+          <Route
+            path="manageproduct"
+            element={
+              <RequireAdmin>
+                <ManageProduct />
+              </RequireAdmin>
+            }
+          ></Route>
 
-          <Route path="allorder" element={<AllOrder />}></Route>
+          <Route
+            path="allorder"
+            element={
+              <RequireAdmin>
+                <AllOrder />
+              </RequireAdmin>
+            }
+          ></Route>
         </Route>
         <Route
           path="/purchase/:itemId"
