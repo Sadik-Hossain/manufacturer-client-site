@@ -5,7 +5,7 @@ const Parts = ({ item }) => {
   const { _id, name, img, description, price, minQty, available } = item;
   const navigate = useNavigate();
   const navigateToInventoryDetail = (id) => {
-    navigate(`/parts/${id}`);
+    navigate(`/purchase/${id}`);
   };
   return (
     <div

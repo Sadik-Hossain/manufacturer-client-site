@@ -11,8 +11,9 @@ const InventoryDetails = () => {
   const [user, error] = useAuthState(auth);
   const [detail, setDetail] = useState({});
   const [loading, setLoading] = useState(false);
+
   const [loading1, setLoading1] = useState(false);
-  const { name, img, description, price, available, minQty } = detail;
+  const { _id, name, img, description, price, available, minQty } = detail;
   const url = `http://localhost:5001/parts/${itemId}`;
 
   useEffect(() => {
@@ -28,66 +29,68 @@ const InventoryDetails = () => {
     return <Spinner />;
   }
 
-  //* =========== deliver funcion =====================
-  const handleDeliver = (e) => {
-    e.preventDefault();
-    const number = Number(e.target.number.value);
-    console.log(number);
-    //* send data to the server
-    // fetch(url, {
-    //   method: "PUT",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(data),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log("success", data);
-    //     //* load updated data
-    //     setLoading(true);
-    //     fetch(url)
-    //       .then((res) => res.json())
-    //       .then((data) => {
-    //         setDetail(data);
-    //         setLoading(false);
-    //       });
-    //   });
-  };
-
-  //* =============== restock function ================
+  //* ============ quantity update & send order to db ==========
   const handleAdd = (e) => {
     e.preventDefault();
+
     const username = e.target.name.value;
     const email = e.target.email.value;
-    const quantity = e.target.number.value;
+    const address = e.target.address.value;
+    const quantity = e.target.quantity.value;
+    const amount = Number(price) * Number(quantity);
     const newAvailable = Number(available) - Number(quantity);
+
+    // * order data
+    const orderData = {
+      product: name,
+      productId: _id,
+      img: img,
+      quantity: quantity,
+      pricePerUnit: price,
+      cost: amount,
+      username: username,
+      email: email,
+      address: address,
+    };
+
     const data = {
       newAvailable,
     };
 
     const url = `http://localhost:5001/parts/${itemId}`;
     //* send data to the server
-    fetch(url, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("success", data);
-        e.target.reset();
-        // //* load updated data
-        setLoading(true);
-        fetch(url)
-          .then((res) => res.json())
-          .then((data) => {
-            setDetail(data);
-            setLoading(false);
-          });
-      });
+
+    if (quantity >= 1) {
+      fetch(url, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("success", data);
+          e.target.reset();
+          // //* load updated data
+          setLoading(true);
+          fetch(url)
+            .then((res) => res.json())
+            .then((data) => {
+              setDetail(data);
+              setLoading(false);
+            });
+        });
+      fetch(`http://localhost:5001/order`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(orderData),
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data));
+    }
   };
   return (
     <div>
@@ -110,27 +113,26 @@ const InventoryDetails = () => {
       </div>
 
       {/* 
-      //* ============ restock form ==================
+      //* ============ order form ==================
       */}
       <div className="register-form">
         <form onSubmit={handleAdd}>
+          <label>Name</label>
           <input type="text" name="name" value={user?.displayName} disabled />
-
+          <label>Email</label>
           <input type="email" name="email" value={user?.email} disabled />
+          <label>Address</label>
           <input type="text" name="address" placeholder="your address" />
+          <label>quantity</label>
           <input
             type="number"
-            name="number"
+            name="quantity"
             pattern="^[0-9]"
             max={available}
             min={minQty}
           />
-          <input
-            style={{ background: "#000", color: "white" }}
-            type="submit"
-            value="Order"
-            placeholder="quantity"
-          />
+
+          <input type="submit" value="Order" placeholder="quantity" />
         </form>
       </div>
     </div>

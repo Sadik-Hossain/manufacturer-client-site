@@ -46,7 +46,14 @@ function App() {
 
           <Route path="allorder" element={<AllOrder />}></Route>
         </Route>
-        <Route path="/parts/:itemId" element={<PartsDetails />}></Route>
+        <Route
+          path="/purchase/:itemId"
+          element={
+            <RequireAuth>
+              <PartsDetails />
+            </RequireAuth>
+          }
+        ></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="*" element={<NotFound />}></Route>

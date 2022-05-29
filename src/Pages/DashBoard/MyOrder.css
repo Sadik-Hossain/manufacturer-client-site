@@ -1,0 +1,26 @@
+.card-container {
+  display: flex;
+  background: #fff;
+  width: 80%;
+  padding: 1rem;
+  margin: 1rem auto;
+  border: 2px solid #dedede;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.card-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+@media only screen and (max-width: 425px) {
+  .card-container {
+    flex-direction: column;
+  }
+}
