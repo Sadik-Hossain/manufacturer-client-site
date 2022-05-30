@@ -105,7 +105,7 @@ const AddProduct = () => {
                 value: true,
                 message: "price required",
               },
-              min: { value: 50, message: "please input a positive number" },
+              min: { value: 1, message: "please input a positive number" },
             })}
           />
           {/* 
@@ -130,7 +130,7 @@ const AddProduct = () => {
                 value: true,
                 message: "quantity required",
               },
-              min: { value: 1, message: "please input a positive number" },
+              min: { value: 50, message: "please input a positive number" },
             })}
           />
           {/* 
