@@ -10,9 +10,13 @@ const Parts = ({ item }) => {
   return (
     <div
       style={{
+        width: "90%",
         background: "#fff",
         padding: "1rem 2rem",
         border: "2px solid #000",
+        borderRadius: "1rem",
+        boxShadow: " 1rem 1rem 0px rgba(0, 0, 0, 1)",
+        marginTop: "3rem",
       }}
     >
       <img src={img} alt="" />

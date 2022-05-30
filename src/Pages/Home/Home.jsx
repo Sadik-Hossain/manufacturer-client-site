@@ -52,7 +52,9 @@ const Home = () => {
       <Banner />
       {/*  //* ------- parts card section-------
        */}
-
+      <h1 className="text-3xl text-center font-semibold mt-5">
+        Computer Parts
+      </h1>
       <div className="inventory-section">
         {items.map((item) => (
           <Parts key={item._id} item={item}></Parts>

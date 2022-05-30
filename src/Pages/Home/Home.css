@@ -2,6 +2,7 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
   gap: 2rem;
 }
 .primary-btn {
@@ -23,5 +24,6 @@
   .inventory-section {
     display: grid;
     grid-template-columns: 1fr;
+    justify-items: center;
   }
 }
