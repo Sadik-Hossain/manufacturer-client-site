@@ -3,10 +3,11 @@ import Spinner from "../Shared/Spinner/Spinner";
 import auth from "../../firebase.init";
 import { signOut } from "firebase/auth";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const AllOrder = () => {
   const [orders, setOrders] = useState([]);
-
+  const [ship, setShip] = useState(false);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     const url = `https://intense-sierra-47612.herokuapp.com/order`;
@@ -36,6 +37,65 @@ const AllOrder = () => {
   if (loading) {
     return <Spinner />;
   }
+  const handleShip = () => {
+    setShip(true);
+    toast.success("item shipped");
+  };
+  let shipInfo;
+  if (ship) {
+    shipInfo = "shipped";
+  } else {
+    shipInfo = "ship";
+  }
+  const handleDelete = (id, email) => {
+    console.log(id, email);
+    const proceed = window.confirm("are you sure?");
+    if (proceed) {
+      setLoading(true);
+      fetch(`https://intense-sierra-47612.herokuapp.com/order/${id}`, {
+        method: "DELETE",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+        .then((res) => {
+          console.log("res", res);
+          if (res.status === 401 || res.status === 403) {
+            signOut(auth);
+            localStorage.removeItem("accessToken");
+            navigate("/");
+          }
+          return res.json();
+        })
+        .then((data) => {
+          console.log(data);
+          //* refetching
+          fetch(
+            `https://intense-sierra-47612.herokuapp.com/order?email=${email}`,
+            {
+              method: "GET",
+              headers: {
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+              },
+            }
+          )
+            .then((res) => {
+              console.log("res", res);
+              if (res.status === 401 || res.status === 403) {
+                signOut(auth);
+                localStorage.removeItem("accessToken");
+                navigate("/");
+              }
+              return res.json();
+            })
+            .then((data) => {
+              console.log(data);
+              setOrders(data);
+              setLoading(false);
+            });
+        });
+    }
+  };
   return (
     <div>
       <h1 className="text-center text-3xl">All orders: {orders.length}</h1>
@@ -81,12 +141,14 @@ const AllOrder = () => {
                     TRXid:{" "}
                     <span className="text-success">{order?.transactionId}</span>
                   </p>
+
+                  <button onClick={handleShip} className="btn btn-success">
+                    {shipInfo}
+                  </button>
                 </>
               ) : (
                 <>
-                  <Link to={`/dashboard/payment/${order._id}`}>
-                    <button className="btn btn-success">pay</button>
-                  </Link>
+                  <p className="font-bold">Pending</p>
                   <button
                     className="danger-btn"
                     onClick={() => handleDelete(order._id, order.email)}
