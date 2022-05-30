@@ -10,10 +10,20 @@ const Myreview = () => {
     const UserReview = {
       name: e.target.name.value,
       email: e.target.email.value,
+      product: e.target.product.value,
       review: e.target.review.value,
       ratings: e.target.ratings.value,
     };
     console.log(UserReview);
+    fetch(`http://localhost:5001/reviews`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(UserReview),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   };
   return (
     <div>
@@ -31,6 +41,8 @@ const Myreview = () => {
             <input type="text" name="name" value={user?.displayName} disabled />
             <label>Email</label>
             <input type="email" name="email" value={user?.email} disabled />
+            <label>Product</label>
+            <input type="text" name="product" required />
             <label>Ratings (out of 5)</label>
             <input
               type="number"

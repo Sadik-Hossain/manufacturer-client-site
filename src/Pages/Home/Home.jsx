@@ -6,9 +6,12 @@ import { toast } from "react-toastify";
 import Spinner from "../Shared/Spinner/Spinner";
 import Parts from "../Parts/Parts";
 import BuisnessSummary from "./BuisnessSummary";
+import { MdGrade } from "react-icons/md";
+
 const Home = () => {
   const [items, setItems] = useState([]);
   const [testimonial, setTestimonial] = useState([]);
+  const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
@@ -20,10 +23,17 @@ const Home = () => {
       });
   }, []);
   useEffect(() => {
-    fetch("http://localhost:5001/testimonials")
+    fetch("https://intense-sierra-47612.herokuapp.com/testimonials")
       .then((res) => res.json())
       .then((data) => {
         setTestimonial(data);
+      });
+  }, []);
+  useEffect(() => {
+    fetch("http://localhost:5001/reviews")
+      .then((res) => res.json())
+      .then((data) => {
+        setReviews(data);
       });
   }, []);
   if (loading) {
@@ -58,10 +68,50 @@ const Home = () => {
       </div>
       {/* //* --------- product review ---------
        */}
+      <h1 className="text-3xl text-center font-semibold">
+        <div class="divider"></div>
+        Reviews from our Users
+      </h1>
+      <div
+        style={{ padding: "0 3rem" }}
+        className="featured-section inventory-section"
+      >
+        {reviews.map((r) => (
+          <div
+            style={{
+              border: "2px solid  ",
+              padding: "1.5rem",
+              borderRadius: ".5rem",
+              background: "#FFF",
+              color: "black",
+              boxShadow: "  .5rem .8rem  rgba(0, 0, 0, 1)",
+              margin: "10rem 0",
+            }}
+            key={r._id}
+          >
+            <p>
+              <span className="font-semibold"> Name: </span> {r.name}
+            </p>
+            <p>
+              <span className="font-semibold"> Product: </span> {r.product}
+            </p>
+            <p className="flex items-center">
+              <span className="font-semibold"> ratings: </span> {r.ratings}
+              <span>
+                <MdGrade style={{ color: "gold" }} />
+              </span>
+            </p>
+            <p>
+              <span className="font-semibold">comment:</span> {r.review}
+            </p>
+          </div>
+        ))}
+      </div>
 
       {/* //* ---------- bonus section ------------
        */}
       {/* //* testimonial */}
+      <div class="divider"></div>
       <h1 className="text-3xl font-bold text-center ">
         See What Our Client Say About Us
       </h1>

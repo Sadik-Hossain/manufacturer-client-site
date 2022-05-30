@@ -16,11 +16,15 @@ const Parts = ({ item }) => {
       }}
     >
       <img src={img} alt="" />
-      <h1>{name}</h1>
+      <h1 className="text-2xl font-bold">{name}</h1>
       <p>{description}</p>
-      <p>available: {available}</p>
+      <p>
+        <span className="font-bold">available:</span> {available}
+      </p>
 
-      <p>price per unit: ${price}</p>
+      <p>
+        <span className="font-bold">price per unit:</span> ${price}
+      </p>
       <button
         onClick={() => navigateToInventoryDetail(_id)}
         className="primary-btn"

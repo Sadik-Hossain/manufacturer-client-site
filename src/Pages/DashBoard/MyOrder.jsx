@@ -43,7 +43,7 @@ const MyOrder = () => {
     const proceed = window.confirm("are you sure?");
     if (proceed) {
       setLoading(true);
-      fetch(`http://localhost:5001/order/${id}`, {
+      fetch(`https://intense-sierra-47612.herokuapp.com/order/${id}`, {
         method: "DELETE",
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
