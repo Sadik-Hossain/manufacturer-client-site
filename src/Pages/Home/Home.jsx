@@ -30,7 +30,7 @@ const Home = () => {
       });
   }, []);
   useEffect(() => {
-    fetch("http://localhost:5001/reviews")
+    fetch("https://intense-sierra-47612.herokuapp.com/reviews")
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);

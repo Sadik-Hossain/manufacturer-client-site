@@ -9,7 +9,7 @@ const MyProfile = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:5001/user/${user.email}`, {
+    fetch(`https://intense-sierra-47612.herokuapp.com/user/${user.email}`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -32,13 +32,14 @@ const MyProfile = () => {
       email: e.target.email.value,
       address: e.target.address.value,
       education: e.target.education.value,
+      phone: e.target.phone.value,
       link: e.target.link.value,
     };
     console.log(UserDetail);
     const proceed = window.confirm("are you sure?");
     if (proceed) {
       setLoading(true);
-      const url = `http://localhost:5001/user/${user.email}`;
+      const url = `https://intense-sierra-47612.herokuapp.com/user/${user.email}`;
       fetch(url, {
         method: "PUT",
         headers: {
@@ -49,13 +50,16 @@ const MyProfile = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          fetch(`http://localhost:5001/user/${user.email}`, {
-            method: "GET",
-            headers: {
-              "content-type": "application/json",
-              authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-            },
-          })
+          fetch(
+            `https://intense-sierra-47612.herokuapp.com/user/${user.email}`,
+            {
+              method: "GET",
+              headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+              },
+            }
+          )
             .then((res) => res.json())
             .then((data) => {
               setData(data);
@@ -95,6 +99,10 @@ const MyProfile = () => {
             <span className="font-semibold">Link: </span>
             {data?.link}
           </p>
+          <p>
+            <span className="font-semibold">phone: </span>
+            {data?.phone}
+          </p>
         </div>
       </div>
       <div style={{ border: "2px solid" }} className="register-form">
@@ -120,6 +128,9 @@ const MyProfile = () => {
             <label>Education </label>
 
             <input type="text" name="education" placeholder="education"></input>
+            <label>Phone </label>
+
+            <input type="tel" name="phone" placeholder="your phone"></input>
             <label>LinkedIn Link </label>
 
             <input type="url" name="link" placeholder="linkedin "></input>

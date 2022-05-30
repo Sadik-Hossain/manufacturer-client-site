@@ -15,7 +15,7 @@ const Myreview = () => {
       ratings: e.target.ratings.value,
     };
     console.log(UserReview);
-    fetch(`http://localhost:5001/reviews`, {
+    fetch(`https://intense-sierra-47612.herokuapp.com/reviews`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

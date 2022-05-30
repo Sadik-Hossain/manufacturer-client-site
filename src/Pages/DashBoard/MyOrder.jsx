@@ -3,15 +3,17 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import Spinner from "../Shared/Spinner/Spinner";
 import "./MyOrder.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
 
 const MyOrder = () => {
   const [user, uLoading] = useAuthState(auth);
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     const email = user.email;
-    const url = `https://intense-sierra-47612.herokuapp.com/order?email=${email}`;
+    const url = `http://localhost:5001/order?email=${email}`;
     setLoading(true);
     fetch(url, {
       method: "GET",

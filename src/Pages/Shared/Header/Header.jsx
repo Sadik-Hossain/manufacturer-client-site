@@ -4,12 +4,14 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import auth from "../../../firebase.init";
 import { MdHdrStrong } from "react-icons/md";
+import { toast } from "react-toastify";
 const Navbar = () => {
   const [user] = useAuthState(auth);
 
   const logout = () => {
     signOut(auth);
     localStorage.removeItem("accessToken");
+    toast.success(`logged out successfully`);
   };
 
   const menuItems = (
@@ -29,7 +31,7 @@ const Navbar = () => {
       <li>
         {user ? (
           <button className="btn btn-ghost" onClick={logout}>
-            Sign Out
+            Logout
           </button>
         ) : (
           <Link to="/login">Login</Link>
