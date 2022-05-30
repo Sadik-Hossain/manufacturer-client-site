@@ -5,6 +5,7 @@ import Spinner from "../Shared/Spinner/Spinner";
 import "./MyOrder.css";
 import { Link, useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
+import { toast } from "react-toastify";
 
 const MyOrder = () => {
   const [user, uLoading] = useAuthState(auth);
@@ -13,9 +14,9 @@ const MyOrder = () => {
   const navigate = useNavigate();
   useEffect(() => {
     const email = user.email;
-    const url = `http://localhost:5001/order?email=${email}`;
+
     setLoading(true);
-    fetch(url, {
+    fetch(`https://intense-sierra-47612.herokuapp.com/myorder?email=${email}`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -44,6 +45,7 @@ const MyOrder = () => {
     console.log(id, email);
     const proceed = window.confirm("are you sure?");
     if (proceed) {
+      toast.success("delete suceess");
       setLoading(true);
       fetch(`https://intense-sierra-47612.herokuapp.com/order/${id}`, {
         method: "DELETE",
@@ -64,7 +66,7 @@ const MyOrder = () => {
           console.log(data);
           //* refetching
           fetch(
-            `https://intense-sierra-47612.herokuapp.com/order?email=${email}`,
+            `https://intense-sierra-47612.herokuapp.com/myorder?email=${email}`,
             {
               method: "GET",
               headers: {

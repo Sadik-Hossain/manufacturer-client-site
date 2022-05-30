@@ -6,7 +6,7 @@ const ManageProduct = () => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:5001/parts")
+    fetch("https://intense-sierra-47612.herokuapp.com/parts")
       .then((res) => res.json())
       .then((data) => {
         setItems(data);
@@ -21,14 +21,14 @@ const ManageProduct = () => {
     if (proceed) {
       console.log(id);
       toast.success("item deleted");
-      fetch(`http://localhost:5001/parts/${id}`, {
+      fetch(`https://intense-sierra-47612.herokuapp.com/parts/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
           setLoading(true);
-          fetch(`http://localhost:5001/parts`)
+          fetch(`https://intense-sierra-47612.herokuapp.com/parts`)
             .then((res) => res.json())
             .then((data) => {
               console.log(data);

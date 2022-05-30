@@ -13,7 +13,7 @@ const AddProduct = () => {
   } = useForm();
   const onSubmit = (data) => {
     console.log(data);
-    const url = `http://localhost:5001/parts`;
+    const url = `https://intense-sierra-47612.herokuapp.com/parts`;
     fetch(url, {
       method: "POST",
       headers: {
