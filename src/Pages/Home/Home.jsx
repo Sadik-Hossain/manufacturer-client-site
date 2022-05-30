@@ -20,7 +20,7 @@ const Home = () => {
       });
   }, []);
   useEffect(() => {
-    fetch("testimonials.json")
+    fetch("http://localhost:5001/testimonials")
       .then((res) => res.json())
       .then((data) => {
         setTestimonial(data);

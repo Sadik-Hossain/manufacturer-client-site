@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const MyOrder = () => {
   const [user, uLoading] = useAuthState(auth);
-  const [items, setItems] = useState([]);
+  const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     const email = user.email;
@@ -30,68 +30,112 @@ const MyOrder = () => {
       })
       .then((data) => {
         console.log(data);
-        setItems(data);
+        setOrders(data);
         setLoading(false);
       });
   }, [user]);
-  console.log(items);
+  console.log(orders);
   if (uLoading || loading) {
     return <Spinner />;
   }
-  // const handlePayment = (id, email) => {
-
-  // };
+  const handleDelete = (id, email) => {
+    console.log(id, email);
+    const proceed = window.confirm("are you sure?");
+    if (proceed) {
+      setLoading(true);
+      fetch(`http://localhost:5001/order/${id}`, {
+        method: "DELETE",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+        .then((res) => {
+          console.log("res", res);
+          if (res.status === 401 || res.status === 403) {
+            signOut(auth);
+            localStorage.removeItem("accessToken");
+            navigate("/");
+          }
+          return res.json();
+        })
+        .then((data) => {
+          console.log(data);
+          //* refetching
+          fetch(
+            `https://intense-sierra-47612.herokuapp.com/order?email=${email}`,
+            {
+              method: "GET",
+              headers: {
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+              },
+            }
+          )
+            .then((res) => {
+              console.log("res", res);
+              if (res.status === 401 || res.status === 403) {
+                signOut(auth);
+                localStorage.removeItem("accessToken");
+                navigate("/");
+              }
+              return res.json();
+            })
+            .then((data) => {
+              console.log(data);
+              setOrders(data);
+              setLoading(false);
+            });
+        });
+    }
+  };
   return (
     <div>
-      <h1 className="text-3xl text-center">My items: {items.length}</h1>
-      {items.map((item) => (
-        <div key={item._id} className="card-container">
+      <h1 className="text-3xl text-center">My orders: {orders.length}</h1>
+      {orders.map((order) => (
+        <div key={order._id} className="card-container">
           <div className="card-left">
             <img
               style={{ width: "64px", height: "64px" }}
-              src={item.img}
+              src={order.img}
               alt=""
             />
             <div className="text-center ">
               <h3 className="font-bold text-xl capitalize">
-                product name: {item?.product}
+                product name: {order?.product}
               </h3>
               <h4 className="text-xl capitalize">
-                quantity: {item?.quantity} pcs
+                quantity: {order?.quantity} pcs
               </h4>
               <h4 className="text-xl capitalize">
-                price per unit: ${item?.pricePerUnit}
+                price per unit: ${order?.pricePerUnit}
               </h4>
-              <h4 className="text-xl capitalize">cost: ${item?.cost}</h4>
+              <h4 className="text-xl capitalize">cost: ${order?.cost}</h4>
             </div>
           </div>
           <div className="card-right">
             <>
-              {item?.cost && item?.paid ? (
+              {order?.cost && order?.paid ? (
                 <>
                   <p
                     style={{
                       color: "#28a745 ",
                       fontWeight: "bold",
                     }}
-
-                    // onClick={() => handlePayment(item._id, item.email)}
                   >
                     Paid
                   </p>
                   <p>
                     Transaction id:{""}
-                    <span className="text-success">{item?.transactionId}</span>
+                    <span className="text-success">{order?.transactionId}</span>
                   </p>
                 </>
               ) : (
                 <>
-                  <Link to={`/dashboard/payment/${item._id}`}>
+                  <Link to={`/dashboard/payment/${order._id}`}>
                     <button className="btn btn-success">pay</button>
                   </Link>
                   <button
                     className="danger-btn"
-                    // onClick={() => handlePayment(item._id, item.email)}
+                    onClick={() => handleDelete(order._id, order.email)}
                   >
                     cancel
                   </button>
