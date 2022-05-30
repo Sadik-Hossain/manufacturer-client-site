@@ -5,25 +5,30 @@ const UserRow = ({ user, refetch }) => {
   const email = user.email;
 
   const makeAdmin = () => {
-    const url = `https://intense-sierra-47612.herokuapp.com/user/admin/${email}`;
-    fetch(url, {
-      method: "PUT",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
-      .then((res) => {
-        if (res.status === 403) {
-          toast.error("Failed to Make an admin");
-        }
-        return res.json();
+    const proceed = window.confirm("are you sure?");
+    if (proceed) {
+      const url = `https://intense-sierra-47612.herokuapp.com/user/admin/${email}`;
+      fetch(url, {
+        method: "PUT",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
       })
-      .then((data) => {
-        if (data.modifiedCount > 0) {
-          refetch();
-          toast.success(`Successfully made an admin`);
-        }
-      });
+        .then((res) => {
+          if (res.status === 403) {
+            toast.error("Failed to Make an admin");
+          }
+          return res.json();
+        })
+        .then((data) => {
+          if (data.modifiedCount > 0) {
+            refetch();
+            toast.success(`Successfully made an admin`);
+          }
+        });
+    } else {
+      toast.warning("action canceled");
+    }
   };
   return (
     <div key={user._id} className="card-container">
